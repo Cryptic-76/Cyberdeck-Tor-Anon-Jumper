@@ -108,3 +108,5 @@ in the advisory and release notes.
 ---
 
 *Thank you for keeping this tool – and the people using it – safer.*
+
+© 2026 Jörn Andre Peters
