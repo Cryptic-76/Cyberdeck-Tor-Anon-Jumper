@@ -27,7 +27,7 @@ Tor SOCKS5 (127.0.0.1:9050)  ── ControlPort 9051: NEWNYM rotation ──► 
 
 ---
 
-## Features Test
+## Features
 
 - Dedicated Tor daemon in a **256 MB tmpfs RAM-disk** (configs + DataDirectory are volatile)
 - Automatic **exit-IP rotation every 120 s** via `SIGNAL NEWNYM` (controlled through the Tor control port)
@@ -200,3 +200,4 @@ tor_wsl_suite/
 │   ├── tor_status.ps1 + tor_status_helper.py   # status/IP tool
 └── _autostart.vbs                 # hidden launcher (in the Startup folder)
 ```
+© 2026 Jörn Andre Peters
