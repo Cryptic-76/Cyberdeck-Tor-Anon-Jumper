@@ -1,0 +1,67 @@
+# ==============================================================================
+# Cyberdeck Tor Suite - torrc Template
+# ==============================================================================
+
+# --- Verzeichnisse & Speicher (RAM-Disk / tmpfs) ---
+DataDirectory {data_directory}
+
+# Der Suite-Prozess startet Tor als direkten Subprozess (root).
+# Über diesen Eintrag legt Tor selbst die Root-Rechte ab und läuft als Tor-Systemuser
+# (damit greift auch der nftables Kill-Switch: skuid <tor-uid> allow).
+User debian-tor
+
+# --- Ports & SOCKS-Schnittstelle ---
+SocksPort {socks_host}:{socks_port}
+SocksPolicy accept 127.0.0.1
+SocksPolicy accept {wsl_ip_range}
+SocksPolicy reject *
+
+# --- DNS-Leak Protection ---
+DNSPort {dns_port}
+AutomapHostsOnResolve 1
+AutomapHostsSuffixes .exit,.onion
+
+# --- Control Port für IP-Rotation (NEWNYM) ---
+# 0.0.0.0, damit Tools vom Windows-Host aus die WSL-IP:9051 erreichen können.
+# Sicherheit: Zugang ist durch das Hashing-Passwort geschützt (Controller-Protokoll unverschlüsselt).
+ControlPort 0.0.0.0:{control_port}
+HashedControlPassword {hashed_control_password}
+
+# --- Tor Relay Konfiguration (Custom ORPort 8443) ---
+ORPort {or_port}
+Address {public_ip_or_auto}
+Nickname {relay_nickname}
+RelayBandwidthRate 100 MB
+RelayBandwidthBurst 100 MB
+
+# Deaktiviere Directory Port zur Reduzierung von Angriffsfläche & Traffic
+DirPort 0
+
+# Optional: Exit Policy schränken wir ein (Standard: Kein Exit Node, nur Relay)
+ExitRelay 0
+ExitPolicy reject *:*
+
+# Stealth-Relay: Publiziere KEINEN Descriptor.
+# Ohne diese Zeile versucht Tor als publizierendes Relay, Dirauths/Relays auf deren
+# ORPorts (9001/8500/9030) direkt zu erreichen. Diese hohen Ports sind aus der
+# WSL2-NAT-Netzlage ENETUNREACH (nur 443 ist frei) -> Bootstrap bleibt bei 30-50%
+# NOROUTE stecken. Mit PublishServerDescriptor 0 bleibt der ORPort inbound offen,
+# aber der erzwungene Direktkontakt auf hohe Ports entfällt und Tor bootstrappt
+# über 443 wie ein Client (bewiesen: 100% in ~12s).
+PublishServerDescriptor 0
+
+# --- Anonymität & Performance Tuning ---
+EnforceDistinctSubnets 1
+SafeLogging 1
+Log notice file {data_directory}/tor.log
+
+# =============================================================================
+# EXIT NODE & LATENCY FILTERING
+# =============================================================================
+# Begrenzung auf Exit-Nodes innerhalb Europas
+ExitNodes {european_exit_nodes}
+StrictNodes 1
+
+# Verhindert extrem langsame Nodes / Pfade
+CircuitBuildTimeout 10
+LearnCircuitBuildTimeout 1
