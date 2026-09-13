@@ -65,7 +65,7 @@ class RAMDiskManager:
             # 2. Unterverzeichnis für Privoxy dynamisch im Mountpoint erzeugen (0755 Rechte)
             privoxy_dir = self.mount_point / "privoxy"
             privoxy_dir.mkdir(parents=True, exist_ok=True)
-            os.chmod(privoxy_dir, 0o755)
+            os.chmod(privoxy_dir, 0o700)
 
             logger.info(f"[+] Unterstrukturen für Tor ({tor_dir}) und Privoxy ({privoxy_dir}) vorbereitet.")
             return True
