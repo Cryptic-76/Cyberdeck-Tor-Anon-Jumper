@@ -1,0 +1,17 @@
+Sep 06 05:51:02.517 [notice] Tor 0.4.9.11 running on Linux with Libevent 2.1.13-stable, OpenSSL 3.6.3, Zlib 1.3.2, Liblzma 5.8.3, Libzstd 1.5.7 and Glibc 2.42 as libc.
+Sep 06 05:51:02.517 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://support.torproject.org/faq/staying-anonymous/
+Sep 06 05:51:02.518 [notice] Read configuration file "/mnt/tor_ramdisk/torrc".
+Sep 06 05:51:02.519 [warn] You have a ControlPort set to accept connections from a non-local address.  This means that programs not running on your computer can reconfigure your Tor.  That's pretty bad, since the controller protocol isn't encrypted!  Maybe you should just listen on 127.0.0.1 and use a tool like stunnel or ssh to encrypt remote connections to your control port.
+Sep 06 05:51:02.519 [warn] Your ContactInfo config option is not set. Please strongly consider setting it, so we can contact you if your relay is misconfigured, end-of-life, or something else goes wrong. It is also possible that your relay might get rejected from the network due to a missing valid contact address.
+Sep 06 05:51:02.520 [notice] Based on detected system memory, MaxMemInQueues is set to 8192 MB. You can override this by setting MaxMemInQueues by hand.
+Sep 06 05:51:02.521 [warn] You have a ControlPort set to accept connections from a non-local address.  This means that programs not running on your computer can reconfigure your Tor.  That's pretty bad, since the controller protocol isn't encrypted!  Maybe you should just listen on 127.0.0.1 and use a tool like stunnel or ssh to encrypt remote connections to your control port.
+Sep 06 05:51:02.521 [notice] Opening Socks listener on 127.0.0.1:9050
+Sep 06 05:51:02.521 [notice] Opened Socks listener connection (ready) on 127.0.0.1:9050
+Sep 06 05:51:02.522 [notice] Opening DNS listener on 127.0.0.1:5353
+Sep 06 05:51:02.522 [notice] Opened DNS listener connection (ready) on 127.0.0.1:5353
+Sep 06 05:51:02.523 [notice] Opening Control listener on 0.0.0.0:9051
+Sep 06 05:51:02.523 [notice] Opened Control listener connection (ready) on 0.0.0.0:9051
+Sep 06 05:51:02.523 [notice] Opening OR listener on 0.0.0.0:8443
+Sep 06 05:51:02.524 [notice] Opened OR listener connection (ready) on 0.0.0.0:8443
+Sep 06 05:51:02.524 [notice] Opening OR listener on [::]:8443
+Sep 06 05:51:02.525 [notice] Opened OR listener connection (ready) on [::]:8443
