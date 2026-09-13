@@ -5,27 +5,22 @@
 
 name: "CodeQL Analysis (Python / Kali Linux)"
 
-# Triggert die Analyse bei Pushes und Pull Requests auf Hauptbranches
-# sowie automatisch einmal wöchentlich per Cronjob.
 on:
   push:
     branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
   schedule:
-    - cron: '0 6 * * 1' # Jeden Montag um 06:00 UTC
+    - cron: '0 6 * * 1'
 
-# Mindestrechte für den GitHub-Token (Schreibrecht für Security-Alerts)
 permissions:
   contents: read
   security-events: write
 
 jobs:
   analyze:
-    name: Analyze Python Code (Kali Container)
+    name: Analyze Python Code
     runs-on: ubuntu-latest
-    
-    # Führt den Job innerhalb des offiziellen Kali Linux Docker-Containers aus
     container:
       image: kalilinux/kali-rolling:latest
 
@@ -35,25 +30,21 @@ jobs:
       contents: read
 
     steps:
-    # 1. Systempakete im Kali-Container aktualisieren & Minimal-Abhängigkeiten laden
-    - name: Prepare Kali Environment & Python Dependencies
+    - name: Prepare Kali Environment
       run: |
         apt-get update
         apt-get install -y git python3 python3-pip curl
 
-    # 2. Quellcode aus dem Repository auschecken
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # 3. CodeQL-Engine für Python mit erweiterten Sicherheitsregeln initialisieren
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: python
         queries: security-and-quality
-        build-mode: none # Python benötigt als interpreted Language keinen Build-Schritt
+        build-mode: none
 
-    # 4. Statische Analyse ausführen und Ergebnisse an GitHub Security übermitteln
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
