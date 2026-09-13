@@ -1,0 +1,56 @@
+"""
+Cyberdeck Tor Suite - Configuration Package
+ Exportiert alle relevanten Einstellungen und Pfade zentral.
+"""
+
+from config.settings import (
+    CONFIG_DIR,
+    EUROPEAN_EXIT_NODES,
+    GENERATED_PRIVOXY_CONF,
+    GENERATED_TORRC,
+    get_control_password_hashed,
+    get_control_password_raw,
+    IP_ROTATION_INTERVAL_SEC,
+    LOG_DIR,
+    LOG_FILE,
+    PRIVOXY_TEMPLATE,
+    PRIVOXY_PORT,
+    RAMDISK_MOUNT_POINT,
+    RAMDISK_SIZE_MB,
+    RESTRICTED_PASSWORD_FILE_ENC,
+    TOR_CONTROL_PORT,
+    TOR_DATA_DIR,
+    TOR_DNS_PORT,
+    TOR_OR_PORT,
+    TOR_RELAY_NICKNAME,
+    TOR_SOCKS_HOST,
+    TOR_SOCKS_PORT,
+    TORRC_TEMPLATE,
+    WSL_IP_RANGE,
+)
+
+__all__ = [
+    "CONFIG_DIR",
+    "EUROPEAN_EXIT_NODES",
+    "GENERATED_PRIVOXY_CONF",
+    "GENERATED_TORRC",
+    "get_control_password_hashed",
+    "get_control_password_raw",
+    "IP_ROTATION_INTERVAL_SEC",
+    "LOG_DIR",
+    "LOG_FILE",
+    "PRIVOXY_CONF_TEMPLATE",
+    "PRIVOXY_PORT",
+    "RAMDISK_MOUNT_POINT",
+    "RAMDISK_SIZE_MB",
+    "RESTRICTED_PASSWORD_FILE_ENC",
+    "TOR_CONTROL_PORT",
+    "TOR_DATA_DIR",
+    "TOR_DNS_PORT",
+    "TOR_OR_PORT",
+    "TOR_RELAY_NICKNAME",
+    "TOR_SOCKS_HOST",
+    "TOR_SOCKS_PORT",
+    "TORRC_TEMPLATE",
+    "WSL_IP_RANGE",
+]
